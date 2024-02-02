@@ -3,9 +3,8 @@ numpy
 pandas
 pydeck
 streamlit
-pysqlite3-binary
+faiss-cpu
 dashscope             ==                   1.13.6
-chromadb              ==                   0.4.22
 langchain             ==                   0.0.354
 pypdf                 ==                   4.0.0
 PyPDF2                ==                   3.0.1
