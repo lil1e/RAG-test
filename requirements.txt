@@ -1,4 +1,4 @@
-﻿altair
+altair
 numpy
 pandas
 pydeck
