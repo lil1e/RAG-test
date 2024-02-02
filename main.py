@@ -1,13 +1,4 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 import streamlit as st
 from streamlit.logger import get_logger
 
@@ -19,7 +10,7 @@ from langchain_community.chat_models import tongyi
 
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferWindowMemory
-from langchain.vectorstores import Chroma
+from langchain.vectorstores import FAISS
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import dashscope
@@ -54,7 +45,7 @@ def get_vectorstore(text_chunks):
     embeddings = DashScopeEmbeddings(
     model="text-embedding-v1"
 )
-    vectorstore = Chroma.from_texts(texts=text_chunks, embedding=embeddings)
+    vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
 
 # Initializes a conversation chain with a given vector store
